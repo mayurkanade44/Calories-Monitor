@@ -1,11 +1,11 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
+import { createContext, useContext, useReducer} from "react";
 import reducer from "./auth_reducer";
 import axios from "axios";
 
 const AuthContext = createContext();
 
 const initialState = {
-  token: localStorage.getItem("token"),
+  token: '',
   loading: true,
   isAuthenticated: false,
   error: null,

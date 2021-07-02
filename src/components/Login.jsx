@@ -21,9 +21,10 @@ const Login = () => {
   };
 
   useEffect(()=>{
-    if(isAuthenticated) {
-        history.push('/home')
+    if (isAuthenticated) {
+      history.push("/home");
     }
+    // eslint-disable-next-line
   }, [isAuthenticated])
 
   

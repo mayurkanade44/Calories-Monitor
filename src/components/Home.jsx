@@ -1,32 +1,14 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import Table from "./Table";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const token = localStorage.getItem('token')
-
-  const data = async () => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    try {
-      const res = await axios.get("http://127.0.0.1:8000/data/", config);
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    data();
-  },[token]);
-
   return (
-    <div>
+    <div className="container">
       <h1>Home</h1>
+      <Link to="/addmeals" className="btn btn-primary my-3">
+        Add Meals
+      </Link>
+      <Table></Table>
     </div>
   );
 };
