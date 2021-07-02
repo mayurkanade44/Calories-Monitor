@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState} from "react";
+import { useHistory } from "react-router";
 import { useAuthContext } from "../context/auth_context";
 
 const Register = () => {
-  const { register, error } = useAuthContext();
+  const { register, error, registerSuccess } = useAuthContext();
+  const history = useHistory()
 
   const [user, setUser] = useState({
     name: "",
@@ -16,6 +18,14 @@ const Register = () => {
     e.preventDefault();
     register(name, email, password);
   };
+
+  useEffect(()=>{
+    if (registerSuccess ){
+      history.push("/login");
+    }
+    
+  },[registerSuccess])
+
 
   const { name, email, password } = user;
 

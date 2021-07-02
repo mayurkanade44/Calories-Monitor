@@ -5,15 +5,18 @@ import PageNotFound from "./components/PageNotFound";
 import Register from "./components/Register";
 import AddMeals from "./components/AddMeals";
 import EditMeals from "./components/EditMeals";
+import Navbar from "./components/Navbar";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
     <Router>
+      <Navbar/>
       <div className="container-fluid">
         <Switch>
-          <Route exact path="/home">
+          <PrivateRoute exact path="/home">
             <Home />
-          </Route>
+          </PrivateRoute>
           <Route exact path="/login">
             <Login />
           </Route>
@@ -23,7 +26,7 @@ function App() {
           <Route exact path="/addmeals">
             <AddMeals />
           </Route>
-          <Route exact path="/editmeals/:id" children={<EditMeals />}></Route>
+          <PrivateRoute exact path="/editmeals/:id" children={<EditMeals />}></PrivateRoute>
 
           <Route path="*">
             <PageNotFound />

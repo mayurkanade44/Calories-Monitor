@@ -2,14 +2,16 @@ import { createContext, useContext, useReducer} from "react";
 import reducer from "./auth_reducer";
 import axios from "axios";
 
+
 const AuthContext = createContext();
 
 const initialState = {
-  token: '',
+  token: localStorage.getItem("token"),
   loading: true,
   isAuthenticated: false,
+  registerSuccess: false,
   error: null,
-  user: null,
+  user: localStorage.getItem("user")
 };
 
 export const AuthProvider = ({ children }) => {
@@ -33,6 +35,9 @@ export const AuthProvider = ({ children }) => {
         type: "REGISTER_SUCCESS",
         payload: res.data,
       });
+      setTimeout(()=> dispatch({
+        type: 'SET_REGISTER'
+      }), 2000)
     } catch (error) {
       dispatch({
         type: "REGISTER_FAIL",
@@ -53,7 +58,6 @@ export const AuthProvider = ({ children }) => {
       { username: username, password: password },
       config
     );
-    console.log("yes");
     dispatch({
       type: "LOGIN_SUCCESS",
       payload: res.data,
@@ -68,8 +72,12 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  const logout = () => {
+    dispatch({type: "LOGOUT"})
+  }
+
   return (
-    <AuthContext.Provider value={{ ...state, register, login }}>
+    <AuthContext.Provider value={{ ...state, register, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
