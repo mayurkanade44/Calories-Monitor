@@ -9,6 +9,7 @@ const initialState = {
   loading: false,
   error: null,
   current: [],
+  target: null
 };
 
 export const DataProvider = ({ children }) => {
@@ -58,6 +59,31 @@ export const DataProvider = ({ children }) => {
       });
     }
   };
+
+  const fetchDailyTarget = async () => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const res = await axios.get("http://127.0.0.1:8000/data/target/", config);
+      dispatch({
+        type: "TARGET_SUCCESS",
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: "DATA_FAIL",
+        payload: error.response.data.detail,
+      });
+    }
+  };
+  console.log(state.target)
+  
 
 
   //Adding New Meals
@@ -147,6 +173,7 @@ export const DataProvider = ({ children }) => {
         updateData,
         fetchSingleData,
         clearCurrent,
+        fetchDailyTarget
       }}
     >
       {children}

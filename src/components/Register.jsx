@@ -30,7 +30,7 @@ const Register = () => {
   const { name, email, password } = user;
 
   return (
-    <div className="position-absolute top-50 start-50 translate-middle">
+    <div className="position-absolute top-50 start-50 translate-middle border border-info p-4">
       {error ? (
         <div className="alert alert-danger" role="alert">
           {error}

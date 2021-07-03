@@ -6,14 +6,11 @@ const Navbar = () => {
   const { user, logout } = useAuthContext();
 
   const onLogout = () => {
-      logout()
-  }
+    logout();
+  };
 
   const userLinks = (
     <>
-      <li className="mt-2 ms-auto">
-        <h4>Hello {user}</h4>
-      </li>
       <li className="nav-item">
         <Link to="/home" className="nav-link">
           <h4>Home</h4>
@@ -53,6 +50,15 @@ const Navbar = () => {
           <div className="ms-2">
             <h2>Calories Monitor</h2>
           </div>
+          <ul className="navbar-nav mx-auto">
+            {user ? (
+              <li className="mt-2 ms-4">
+                <h4 style={{ color: "#39A2DB" }}>
+                  Hello <b style={{color: "black"}}>{user}</b>, your daily target is
+                </h4>
+              </li>
+            ) : null}
+          </ul>
           <ul className="navbar-nav ms-auto mx-2">
             {user ? userLinks : guestLinks}
           </ul>

@@ -4,7 +4,6 @@ import { useDataContext } from "../context/data_context";
 
 const Table = () => {
   const { data, fetchData, handleDelete, clearCurrent } = useDataContext();
-  console.log(data)
   
   useEffect(()=>{
     fetchData();

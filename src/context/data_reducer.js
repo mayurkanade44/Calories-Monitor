@@ -49,6 +49,13 @@ const data_reducer = (state, action) => {
         ...state,
         current: [],
       };
+    case "TARGET_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        target: action.payload,
+      };
 
     default:
       throw new Error(`No Matching "${action.type}" - action type`);
