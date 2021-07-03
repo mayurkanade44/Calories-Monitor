@@ -1,5 +1,4 @@
 import Table from "./Table";
-import { Link } from "react-router-dom";
 import DailyTarget from "./DailyTarget";
 
 const Home = () => {
