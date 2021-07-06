@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/auth_context";
+import { useDataContext } from "../context/data_context";
 
 const Navbar = () => {
   const { user, logout } = useAuthContext();
+  const { target } = useDataContext();
 
   const onLogout = () => {
     logout();
@@ -54,7 +56,11 @@ const Navbar = () => {
             {user ? (
               <li className="mt-2 ms-4">
                 <h4 style={{ color: "#39A2DB" }}>
-                  Hello <b style={{color: "black"}}>{user}</b>, your daily target is
+                  Hello <b style={{ color: "black" }}>{user}</b>, your daily
+                  target is{" "}
+                  <b style={{ color: "black" }}>
+                    {target.length ? target[0].target : null}
+                  </b>
                 </h4>
               </li>
             ) : null}

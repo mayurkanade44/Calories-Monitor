@@ -11,22 +11,26 @@ import PrivateRoute from "./components/PrivateRoute";
 function App() {
   return (
     <Router>
-      <Navbar/>
+      <Navbar />
       <div className="container-fluid">
         <Switch>
           <PrivateRoute exact path="/home">
             <Home />
           </PrivateRoute>
-          <Route exact path="/login">
+          <Route exact path="/">
             <Login />
           </Route>
           <Route exact path="/register">
             <Register />
           </Route>
-          <Route exact path="/addmeals">
+          <PrivateRoute exact path="/addmeals">
             <AddMeals />
-          </Route>
-          <PrivateRoute exact path="/editmeals/:id" children={<EditMeals />}></PrivateRoute>
+          </PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/editmeals/:id"
+            children={<EditMeals />}
+          ></PrivateRoute>
 
           <Route path="*">
             <PageNotFound />

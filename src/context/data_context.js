@@ -82,7 +82,6 @@ export const DataProvider = ({ children }) => {
       });
     }
   };
-  console.log(state.target);
 
   //Adding New Meals
   const addMeals = async (newData) => {

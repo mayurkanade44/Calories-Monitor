@@ -13,8 +13,8 @@ const DailyTarget = () => {
 
   const onSave = (e) => {
     e.preventDefault();
-    setDailyTarget(current);
     setShow(false);
+    setDailyTarget(current);
   };
 
   const setTarget = () => {

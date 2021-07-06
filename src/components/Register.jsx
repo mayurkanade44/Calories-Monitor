@@ -20,10 +20,10 @@ const Register = () => {
   };
 
   useEffect(()=>{
-    if (registerSuccess ){
-      history.push("/login");
+    if (registerSuccess) {
+      history.push("/");
     }
-    
+    // eslint-disable-next-line
   },[registerSuccess])
 
 
