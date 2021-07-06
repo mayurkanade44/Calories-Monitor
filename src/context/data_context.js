@@ -9,7 +9,7 @@ const initialState = {
   loading: false,
   error: null,
   current: [],
-  target: null
+  target: [],
 };
 
 export const DataProvider = ({ children }) => {
@@ -82,9 +82,7 @@ export const DataProvider = ({ children }) => {
       });
     }
   };
-  console.log(state.target)
-  
-
+  console.log(state.target);
 
   //Adding New Meals
   const addMeals = async (newData) => {
@@ -113,7 +111,6 @@ export const DataProvider = ({ children }) => {
       });
     }
   };
-
 
   //Updating Meals
   const updateData = async (data) => {
@@ -156,6 +153,54 @@ export const DataProvider = ({ children }) => {
     });
   };
 
+  const setDailyTarget = async (current) => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    if (state.target.length > 0) {
+      const id = state.target[0].id;
+      try {
+        const res = await axios.put(
+          `http://127.0.0.1:8000/data/target/${id}/`,
+          { target: current },
+          config
+        );
+        dispatch({
+          type: "TARGET_UPDATED",
+          payload: res.data,
+        });
+      } catch (error) {
+        console.log(error);
+        dispatch({
+          type: "DATA_FAIL",
+          payload: error.response.data.detail,
+        });
+      }
+    } else {
+      try {
+        const res = await axios.post(
+          "http://127.0.0.1:8000/data/target/",
+          { target: current },
+          config
+        );
+        dispatch({
+          type: "TARGET_UPDATED",
+          payload: res.data,
+        });
+      } catch (error) {
+        console.log(error);
+        dispatch({
+          type: "DATA_FAIL",
+          payload: error.response,
+        });
+      }
+    }
+  };
+
   const clearCurrent = () => {
     dispatch({
       type: "CLEAR_CURRENT",
@@ -173,7 +218,8 @@ export const DataProvider = ({ children }) => {
         updateData,
         fetchSingleData,
         clearCurrent,
-        fetchDailyTarget
+        fetchDailyTarget,
+        setDailyTarget,
       }}
     >
       {children}
