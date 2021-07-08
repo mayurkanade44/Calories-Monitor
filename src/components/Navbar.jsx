@@ -34,7 +34,7 @@ const Navbar = () => {
   const guestLinks = (
     <>
       <li className="nav-item">
-        <Link to="/login" className="nav-link">
+        <Link to="/" className="nav-link">
           <h4>Login</h4>
         </Link>
       </li>
