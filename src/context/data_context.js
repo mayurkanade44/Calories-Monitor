@@ -25,7 +25,7 @@ export const DataProvider = ({ children }) => {
     };
 
     try {
-      const res = await axios.get("http://127.0.0.1:8000/data/", config);
+      const res = await axios.get("https://djangocalories.herokuapp.com/data/", config);
       dispatch({
         type: "DATA_SUCCESS",
         payload: res.data,
@@ -46,7 +46,7 @@ export const DataProvider = ({ children }) => {
       },
     };
     try {
-      const res = await axios.get(`http://127.0.0.1:8000/data/${id}`, config);
+      const res = await axios.get(`https://djangocalories.herokuapp.com/data/${id}`, config);
       dispatch({
         type: "SINGLE_DATA_SUCCESS",
         payload: res.data,
@@ -69,7 +69,7 @@ export const DataProvider = ({ children }) => {
       },
     };
     try {
-      const res = await axios.get("http://127.0.0.1:8000/data/target/", config);
+      const res = await axios.get("https://djangocalories.herokuapp.com/data/target/", config);
       dispatch({
         type: "TARGET_SUCCESS",
         payload: res.data,
@@ -94,7 +94,7 @@ export const DataProvider = ({ children }) => {
     };
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/data/",
+        "https://djangocalories.herokuapp.com/data/",
         newData,
         config
       );
@@ -120,7 +120,7 @@ export const DataProvider = ({ children }) => {
     };
     try {
       const res = await axios.put(
-        `http://127.0.0.1:8000/data/${data.id}/`,
+        `https://djangocalories.herokuapp.com/data/${data.id}/`,
         data,
         config
       );
@@ -135,7 +135,7 @@ export const DataProvider = ({ children }) => {
 
   //Delete Meals
   const handleDelete = async (id) => {
-    await axios.delete(`http://127.0.0.1:8000/data/${id}`);
+    await axios.delete(`https://djangocalories.herokuapp.com/data/${id}`);
     dispatch({
       type: "DELETE_SUCCESS",
       payload: id,
@@ -164,7 +164,7 @@ export const DataProvider = ({ children }) => {
       const id = state.target[0].id;
       try {
         const res = await axios.put(
-          `http://127.0.0.1:8000/data/target/${id}/`,
+          `https://djangocalories.herokuapp.com/data/target/${id}/`,
           { target: current },
           config
         );
@@ -182,7 +182,7 @@ export const DataProvider = ({ children }) => {
     } else {
       try {
         const res = await axios.post(
-          "http://127.0.0.1:8000/data/target/",
+          "https://djangocalories.herokuapp.com/data/target/",
           { target: current },
           config
         );

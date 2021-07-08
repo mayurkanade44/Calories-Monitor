@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/data/register/",
+        "https://djangocalories.herokuapp.com/data/register/",
         { name: name, email: email, password: password },
         config
       );
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     try { const res = await axios.post(
-      "http://127.0.0.1:8000/data/login/",
+      "https://djangocalories.herokuapp.com/data/login/",
       { username: username, password: password },
       config
     );
